@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Directors Profile</title>
+    <style>
+              body {
+                  font-family: 'Poppins', sans-serif;
+                  background-color: #170808;
+                  text-align: center;
+                  margin: 20px;
+      	    color:white;
+              }
+              .container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 20px;
+          max-width: 1200px;
+          margin: auto;
+      }
+              }
+              .card {
+                  background-color:black ;
+                  padding: 20px;
+                  border-radius: 15px;
+                  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                  cursor: pointer;
+                  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+                  width: 320px;
+                  height: 450px;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+              }
+              .card:hover {
+                  transform: scale(1.05);
+                  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+              }
+              .card img {
+                  width: 140px;
+                  height: 140px;
+                  border-radius: 50%;
+                  border: 4px solid #ddd;
+                  transition: transform 0.5s ease-in-out;
+              }
+              .card:hover img {
+                  transform: scale(1.1);
+              }
+              .info-overlay {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background: rgba(0, 0, 0, 0.8);
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  opacity: 0;
+                  visibility: hidden;
+                  transition: opacity 0.5s ease-in-out;
+              }
+              .info-overlay.show {
+                  opacity: 1;
+                  visibility: visible;
+              }
+              .info-card {
+                  background: white;
+                  padding: 25px;
+                  border-radius: 10px;
+                  text-align: center;
+                  width: 80%;
+                  max-width: 500px;
+                  transform: translateY(50px);
+                  transition: transform 0.5s ease-in-out;
+              }
+              .info-overlay.show .info-card {
+                  transform: translateY(0);
+              }
+              .close-btn {
+                  background: #ff4b5c;
+                  color: white;
+                  padding: 10px 15px;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+                  margin-top: 15px;
+                  transition: background 0.3s ease;
+              }
+              .close-btn:hover {
+                  background: #d43f4f;
+              }
+              @media (max-width: 768px) {
+                  .container {
+                      flex-direction: column;
+                      align-items: center;
+                  }
+                  .card {
+                      width: 90%;
+                      height: auto;
+                  }
+                  .info-card {
+                      width: 90%;
+                  }
+              }
+
+      .company{
+             width:auto;
+      	height:15vh;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="adii.png" class="company" />
+    <h1>Meet Our Directors</h1>
+    <div class="container" id="directors"></div>
+    <div class="info-overlay" id="infoOverlay">
+      <div class="info-card" style="color: black">
+        <img id="infoImage" src="" alt="Director" />
+        <h2 id="infoName"></h2>
+        <p id="infoPosition"></p>
+        <p><strong>Education:</strong> <span id="infoEducation"></span></p>
+        <p><strong>Experience:</strong> <span id="infoExperience"></span></p>
+        <p><strong>Projects:</strong> <span id="infoProjects"></span></p>
+        <button class="close-btn" onclick="closeInfo()">Close</button>
+      </div>
+    </div>
+    <script>
+      const directors = [
+        {
+          name: "Mr. Satyabrata Lenka",
+          image: "avtar.webp",
+          education: "graduation in economic",
+          experience: "25 years in Construction & Realestate",
+          projects: "successfully completed 15 different projects",
+        },
+        {
+          name: "Mr. Dharmendra Kumar Parida",
+          image: "avtar.webp",
+          education: "architecture from Utkal university",
+          experience:
+            "25 years as an architect in the field of Real-Estate Development & Designing ",
+          projects: "completed 15 projects in all over odisha",
+        },
+        {
+          name: "Mr. Sidharth Sankar Dash",
+          image: "avtar.webp",
+          education: "civil  engineer",
+          experience:
+            "having an extensive experience of 25years in construction of flats & duplex and real-estate Development",
+          projects:
+            "already successfully completed 20 projects all over Odisha",
+        },
+        {
+          name: "Mr Subrat Lenka",
+          position: "",
+          image: "avtar.webp",
+          education:
+            "mechanical engineering degree from Ramiah institute of technology ,Bangalore.",
+          experience: "25year",
+          projects: "successfully completed 15 different projects",
+        },
+      ];
+
+      const container = document.getElementById("directors");
+      const infoOverlay = document.getElementById("infoOverlay");
+
+      directors.forEach((director) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+                <img src="${director.image}" alt="${director.name}">
+                <h2>${director.name}</h2>
+            `;
+
+        card.addEventListener("click", () => {
+          document.getElementById("infoImage").src = director.image;
+          document.getElementById("infoName").textContent = director.name;
+          document.getElementById("infoEducation").textContent =
+            director.education;
+          document.getElementById("infoExperience").textContent =
+            director.experience;
+          document.getElementById("infoProjects").textContent =
+            director.projects;
+          infoOverlay.classList.add("show");
+        });
+
+        container.appendChild(card);
+      });
+
+      function closeInfo() {
+        infoOverlay.classList.remove("show");
+      }
+    </script>
+  </body>
+</html>

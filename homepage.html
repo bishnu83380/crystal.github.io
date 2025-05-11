@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Adiilaksmi Construction Pvt. Ltd. - Luxury apartments in Bhubaneswar, Raghunathpur. Explore our premium 2BHK & 3BHK homes."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Adiilaksmi Construction Pvt.Ltd</title>
+    <link rel="icon" type="image/gif" href="fav.png" />
+    <style>
+      body {
+        margin: 0px 0px;
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        justify-content: flex-end;
+      }
+      * {
+        font-family: "Roboto", sans-serif;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        padding: 10px 20px;
+        position: relative;
+      }
+      .logo img {
+        width: 150px; /* Set logo width */
+        height: 50px;
+      }
+      .menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+      .menu li {
+        margin-left: 20px;
+        position: relative; /* Required for positioning the dropdown */
+      }
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 16px;
+        transition: background-color 0.3s;
+      }
+      .menu a:hover {
+        background-color: #575757;
+        border-radius: 4px;
+      }
+
+      /* Profile Dropdown */
+      .profile-dropdown {
+        display: none;
+        list-style: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #444;
+        padding: 10px 0;
+        margin: 0;
+        width: 200px;
+        z-index: 100;
+      }
+      .profile-dropdown li {
+        padding: 8px 5px;
+        text-align: left;
+      }
+      .profile-dropdown li a {
+        font-size: 16px;
+      }
+      .menu li:hover .profile-dropdown {
+        display: block;
+      }
+
+      /* Hamburger Menu Styles */
+      .menu-icon {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 10px;
+        border: none;
+        background: none;
+      }
+      .menu-icon div {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 4px 0;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 768px) {
+        .menu {
+          display: none;
+          width: 100%;
+          text-align: center;
+          flex-direction: column;
+          margin-top: 10px;
+        }
+        .menu.active {
+          display: flex;
+        }
+        .menu li {
+          margin: 10px 0;
+        }
+        .menu a {
+          padding: 12px;
+          font-size: 20px;
+        }
+        .menu-icon {
+          display: flex;
+        }
+      }
+
+      /* Container holding the columns */
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px;
+      }
+
+      /* Left column */
+      .left,
+      .right {
+        background-color: #f4f4f4;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      /* Middle column */
+      .middle {
+        background-color: #ddd;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      /* Column widths */
+      .left,
+      .right {
+        flex: 0 0 25%; /* Each takes up 25% */
+      }
+      .middle {
+        flex: 0 0 50%; /* Middle takes up 50% */
+      }
+
+      /* Responsiveness: Adjust column widths on smaller screens */
+      @media (max-width: 768px) {
+        .left,
+        .right {
+          flex: 0 0 100%; /* Take up full width on smaller screens */
+        }
+        .middle {
+          flex: 0 0 100%; /* Take up full width on smaller screens */
+        }
+      }
+
+      /*crystal logo*/
+      .crystal {
+        width: 100%;
+        height: auto;
+      }
+
+      /*table left side*/
+      table tr td {
+        padding: 2px 15px;
+      }
+
+      .image-container img {
+        width: 200px; /* Adjust as needed */
+        height: auto;
+        position: absolute;
+        opacity: 1;
+        animation: blink 2s infinite;
+      }
+
+      .image-container img:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .image-container img:nth-child(2) {
+        animation-delay: 1s;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /*enquiry*/
+      .enquiry {
+        width: 100%;
+        max-width: 400px;
+        margin: 150px auto; /* Center the form horizontally */
+        padding: 10px;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+        border: 1px solid black;
+      }
+
+      .enquiry h5 {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        margin: 0;
+      }
+
+      .enquiry p {
+        padding: 5px;
+      }
+
+      .enquiry form {
+        padding: 5px;
+        display: flex; /* Use flexbox to align the buttons in a row */
+        flex-direction: column; /* Make inputs stack vertically */
+      }
+
+      .enquiry form input,
+      .enquiry form textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      /* Use flexbox to align the buttons in a row */
+      .enquiry form .button-container {
+        display: flex;
+        justify-content: space-between; /* Distribute buttons with space in between */
+        gap: 5px; /* Space between buttons */
+      }
+
+      .enquiry form button {
+        width: 48%;
+        padding: 12px;
+        border: none;
+        font-weight: bold;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: background-color 0.3s ease-in-out;
+      }
+      .enquiry form button:hover {
+        background-color: #0056b3;
+      }
+
+      /*calculator*/
+      .calculator {
+        display: flex; /* Use Flexbox for layout */
+        align-items: center; /* Vertically center the content */
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        width: 100%; /* Adjust width as needed */
+        margin: 0 auto; /* Center the div horizontally */
+      }
+
+      .calculator-image {
+        width: 60px; /* Adjust the size of the image */
+        height: auto;
+        margin-right: 20px; /* Space between the image and text */
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+        margin: 0; /* Remove default margin */
+        flex-grow: 1; /* Allow the text to take up remaining space */
+        text-align: center; /* Center the text horizontally */
+      }
+
+      .download {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #000;
+        padding: 15px;
+        width: 250px;
+        text-align: center;
+        margin: 50px auto;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        text-decoration: none;
+        color: black;
+        font-family: Arial, sans-serif;
+      }
+
+      .download img {
+        width: 40px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      .download p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .download:hover {
+        background-color: #ddd;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .project-enquiry {
+        border: 2px solid black;
+        padding: 05px;
+      }
+
+      /*table hover effect*/
+      table tr {
+        transition: all 0.3s ease-in-out;
+      }
+
+      table tr:hover {
+        background-color: #79429225; /* Change background color */
+        border-radius: 10px; /* Make corners rounded */
+        transform: scale(1.05); /* Slightly enlarge the row */
+        box-shadow: 2px 2px 10px rgba(145, 79, 175, 0.2); /* Add shadow effect */
+      }
+
+      /* jas anz*/
+      .jas-anz img {
+        width: 100%;
+        height: auto;
+      }
+
+      table tr td a {
+        text-decoration: none;
+        color: black;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      footer {
+        background-color: #222;
+        color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+      }
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+      }
+      .footer-section h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        border-bottom: 2px solid #f39c12;
+        display: inline-block;
+        padding-bottom: 5px;
+      }
+      .footer-section p,
+      .footer-section ul,
+      .footer-section li {
+        font-size: 14px;
+        list-style: none;
+        margin-bottom: 8px;
+      }
+      .footer-section a {
+        color: #f39c12;
+        text-decoration: none;
+      }
+      .footer-section a:hover {
+        text-decoration: underline;
+      }
+      .footer-bottom {
+        margin-top: 20px;
+        font-size: 13px;
+        border-top: 1px solid #555;
+        padding-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="index.html" class="logo"
+        ><img src="logo.gif" alt="Website Logo"
+      /></a>
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="Aboutus page.html">About</a></li>
+        <li class="profile">
+          <a href="Directorsprofile.html">Profile</a>
+          <ul class="profile-dropdown">
+            <li><a href="Directorsprofile.html">Mr. Satyabrata Lenka</a></li>
+            <li>
+              <a href="Directorsprofile.html">Mr. Dharmendra Kumar Parida</a>
+            </li>
+            <li>
+              <a href="Directorsprofile.html">Mr. Sidharth Sankar Dash</a>
+            </li>
+            <li><a href="Directorsprofile.html">Mr. Subrat Lenka</a></li>
+          </ul>
+        </li>
+        <li><a href="contactus.html">Contact Us</a></li>
+      </ul>
+      <div class="menu-icon" id="menu-icon" aria-label="Toggle Menu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <script>
+      const menuIcon = document.getElementById("menu-icon");
+      const menu = document.querySelector(".menu");
+
+      menuIcon.addEventListener("click", () => {
+        menu.classList.toggle("active");
+      });
+    </script>
+
+    <!--start video section-->
+    <video autoplay loop muted width="100%" height="40%">
+      <source
+        src="landingpage.mp4"
+        type="video/mp4"
+      />
+    </video>
+
+    <!--navigator-->
+    <p
+      style="
+        background-color: black;
+        color: white;
+        font-style: bold;
+        padding: 5px;
+      "
+    >
+      Home - Residential - Luxury Homes - Crystal - Overview
+    </p>
+
+    <!--Main Content-->
+
+    <div class="container">
+      <!-- Left Column -->
+      <div class="left">
+        <table width="100%">
+          <tr bgcolor="green">
+            <td>Overview</td>
+          </tr>
+          <tr bgcolor="#007BFF">
+            <td><a href="Features.html">Features</a></td>
+          </tr>
+          <tr bgcolor="#007BFF">
+            <td>
+              <a href="https://maps.app.goo.gl/24UpwLpBwmAd96m8A"
+                >Location Map</a
+              >
+            </td>
+          </tr>
+          <tr bgcolor="#007BFF">
+            <td>Project Layout</td>
+          </tr>
+          <tr bgcolor="#007BFF">
+            <td><a href="floorlayout.html">Floor Plans</a></td>
+          </tr>
+          <tr bgcolor="#007BFF">
+            <td><a href="contactus.html">Contact sales office</a></td>
+          </tr>
+          <tr bgcolor="#007BFF">
+            <td><a href="payment shedule.html">Payment Shedule</a></td>
+          </tr>
+          <tr bgcolor="#007BFF">
+            <td>FAQs</td>
+          </tr>
+        </table>
+        <!--end table section-->
+        <a href="Brochure - Crystal.pdf" class="download">
+          <img src="pdfd.avif" alt="PDF" />
+          <p>Download Brochure</p>
+        </a>
+
+        <div class="project-enquiry">
+          <p>Project Enquiry</p>
+          <hr />
+          <strong>CRYSTAL</strong><br />
+          <b>Bhubaneswar :</b>
+          <p>9861053338<br />9337723365</p>
+        </div>
+
+        <div class="jas-anz">
+          <img src="jas-anz.png" alt="jas-anz certificate" />
+        </div>
+      </div>
+
+      <!-- Middle Column -->
+      <div class="middle">
+        <h2 id="top">Overview</h2>
+        <p>
+          Crystal is an exclusive boutique apartment project located in
+          Raghunathpur, Bhubaneswar, offering a perfect blend of luxury,
+          comfort, and convenience. Developed by Adiilaksmi Construction, a
+          trusted name in real estate with 15+ years of experience, Crystal is
+          designed to provide a premium living experience with meticulously
+          crafted 2BHK & 3BHK apartments.<br /><br />
+
+          Approved by BDA and registered under ORERA, Crystal ensures
+          transparency, legal compliance, and superior construction quality. The
+          project boasts a strategic location, offering seamless connectivity to
+          educational institutions, hospitals, business hubs, and recreational
+          centers.<br /><br />
+
+          With modern architecture, high-end specifications, and world-class
+          amenities, Crystal redefines boutique luxury living. The thoughtfully
+          designed homes feature spacious balconies, premium flooring, stylish
+          kitchens, and top-quality fittings, creating an environment that
+          blends sophistication with functionality.<br /><br />
+
+          Key Highlights:<br />
+          ✅ Prime Location – Close to schools, hospitals, and commercial
+          zones.<br />
+          ✅ Premium 2BHK & 3BHK Apartments – Designed for modern, elegant
+          living.<br />
+          ✅ ORERA-Registered & BDA Approved – Ensuring transparency and
+          quality.<br />
+          ✅ Luxury Amenities – Ample parking, power backup, 24/7 security,
+          CCTV, and more.<br />
+          ✅ Sustainable & Smart Living – Energy-efficient design, high-end
+          materials, and smart security features.<br /><br />
+
+          At Crystal, we don’t just build homes—we create a lifestyle of
+          elegance and exclusivity. Come, experience a new standard of living in
+          Bhubaneswar’s most sought-after neighborhood.<br /><br />
+
+          <b>Book your dream home at Crystal today!</b>
+        </p>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right">
+        <div style="border: 1px solid black">
+          <h5
+            style="
+              background-color: black;
+              color: white;
+              padding: 5px 5px;
+              margin: 0px;
+            "
+          >
+            Quick Facts
+          </h5>
+          <h3 style>&#8377;80.50Lacs to &#8377;1.50cr</h3>
+          <p><b>Location :</b><br />Raghunathpur , Bhubaneswar</p>
+          <p><b>Type :</b><br />2BHK , 3BHK</p>
+        </div>
+        <br />
+        <!--blinking logo-->
+        <a href="https://maps.app.goo.gl/yeTwYU1zpjRr1XGc8"
+          ><div class="image-container">
+            <img src="kalyani-heights logo.jpg" alt="Image 1" />
+            <img src="Kalyani heights Phase - II.png" alt="Image 2" /></div
+        ></a>
+
+        <!--inquiry section-->
+        <div class="enquiry">
+          <h5>Enquiry Form</h5>
+          <p>
+            Yes, I am interested to know more about
+            <strong>CRYSTAL, Bhubaneswar.</strong><br />Please get in touch with
+            us...
+          </p>
+          <p>Please fill in the details below:</p>
+          <form
+            id="contactForm"
+            action="https://formspree.io/f/maneblgb"
+            method="POST"
+          >
+            <input
+              type="text"
+              name="full_name"
+              placeholder="Enter your full Name"
+              required
+            />
+            <input type="text" name="city" placeholder="City" />
+            <input type="text" name="country" placeholder="Country" />
+            <input type="text" name="phone" placeholder="Phone" />
+            <input type="number" name="mobile" placeholder="Mobile" required />
+            <input type="email" name="email" placeholder="E-mail" required />
+            <textarea name="query" rows="4" placeholder="Your Query"></textarea>
+            <div class="button-container">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+
+        <!--calculator-->
+        <div class="calculator">
+          <a href="emi calculator.html"
+            ><img
+              src="calculator.jfif"
+              alt="Calculator Image"
+              class="calculator-image"
+          /></a>
+          <a href="emi calculator.html"><h1>EMI Calculator</h1></a>
+        </div>
+        <br /><br />
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.842831099526!2d85.8263932752388!3d20.371144781118613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1909004bcc0fff%3A0x752957d80d4dc6b8!2sCRYSTAL%2C%20ADIILAKSMI!5e1!3m2!1sen!2sin!4v1740197182022!5m2!1sen!2sin"
+          width="100%"
+          height="200px"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>
+            At Adiilaksmi Construction Pvt. Ltd., we turn visions into reality
+            with quality, trust, and innovation. Your dream, our foundation.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="Aboutus page.html">About</a></li>
+            <li><a href="directorsprofile.html">Profile</a></li>
+            <li><a href="contactus.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>Email: info@adiilaksmi.com</p>
+          <p>Phone: 9861053338</p>
+          <p>
+            Address: Plot No : 663-665 AT : Bhimpur P.O : Pahala P.S : Pahala
+            Dist : Khordha PIN : 751032
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 adiilaksmi.com | All Rights Reserved
+      </div>
+    </footer>
+  </body>
+</html>
